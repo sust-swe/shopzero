@@ -3,5 +3,7 @@ Rails.application.routes.draw do
   scope 'admin' do
   	get '/new', to: 'admin#new'
   end
-  resources :admin
+  scope 'users' do
+    post '/signup', to: 'users#create'
+  end
 end
