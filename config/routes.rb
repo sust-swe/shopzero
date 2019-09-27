@@ -1,16 +1,13 @@
 Rails.application.routes.draw do
   root 'users#new'
   
-  scope 'admin' do
-  	resources :admin
+  get '/:id/activate',  to: 'account_activations#edit', as: 'activate'
+  
+  scope 'sessions' do
+    get     '/user',      to: 'sessions#new',     as: 'new'
+    post    '/login',     to: 'sessions#create',  as: 'create'
+    delete  '/logout',    to: 'sessions#destroy', as: 'destroy'
   end
-  # scope 'users' do
-  #   # post '/signup', to: 'users#create'
-  #   resources :account_activations, only: [:edit]
-  # end
-
-  get '/:id/activate', to: 'account_activations#edit', as: 'activate'
-
+  
   resources :users
-  # resources :account_activations, only: [:edit]
 end
