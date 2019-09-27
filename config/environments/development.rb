@@ -1,4 +1,5 @@
 Rails.application.configure do
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on
@@ -34,6 +35,20 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = false
 
   config.action_mailer.perform_caching = false
+
+  host = "localhost:3000"
+  
+  config.action_mailer.default_url_options = { host: host, protocol: 'http' }
+  
+  config.action_mailer.delivery_method = :smtp
+
+  config.action_mailer.smtp_settings = {
+    authentication: :plain,
+    address: "smtp.mailgun.org",
+    port: 587,
+    user_name: ENV["MAILGUN_USERNAME"],
+    password: ENV["MAILGUN_PASSWORD"]
+  }
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
