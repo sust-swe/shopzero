@@ -2,5 +2,5 @@
 <p>
 Welcome to the Shopzero! Click on the link below to activate your account:
 </p>
-<%= link_to "Activate", edit_account_activation_url(@user.activation_token,
+<%= link_to "Activate",activate_url(@user.activation_token,
                                                     email: @user.email) %>

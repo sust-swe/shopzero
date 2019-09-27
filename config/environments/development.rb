@@ -44,10 +44,10 @@ Rails.application.configure do
 
   config.action_mailer.smtp_settings = {
     authentication: :plain,
-    address: "smtp.mailgun.org",
-    port: 587,
-    user_name: ENV["MAILGUN_USERNAME"],
-    password: ENV["MAILGUN_PASSWORD"]
+    address: ENV["MAILER_ADDRESS"],
+    port: ENV["MAILER_PORT"],
+    user_name: ENV["MAILER_USERNAME"],
+    password: ENV["MAILER_PASSWORD"]
   }
 
   # Print deprecation notices to the Rails logger.

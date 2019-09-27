@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   #   resources :account_activations, only: [:edit]
   # end
 
+  get '/:id/activate', to: 'account_activations#edit', as: 'activate'
+
   resources :users
-  resources :account_activations, only: [:edit]
+  # resources :account_activations, only: [:edit]
 end
