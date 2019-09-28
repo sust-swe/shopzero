@@ -33,8 +33,8 @@ gem 'bcrypt', '~> 3.1.7'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-# Use react
-gem 'react-rails', '~> 2.6.0'
+# Use bootstrap
+gem 'bootstrap'
 # Use jquery
 gem 'jquery-rails', '~> 4.3.5'
 # Use haml
