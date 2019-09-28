@@ -1,0 +1,2 @@
+class TestReactCode < ApplicationRecord
+end
