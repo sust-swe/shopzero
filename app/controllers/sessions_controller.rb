@@ -8,6 +8,7 @@ class SessionsController < ApplicationController
 
   def create
     @user = User.find_by(email: params[:email])
+    return if @user.nil?
     if @user.authenticated?(:password,params[:password]) && @user.activated
       log_in @user
       render json: @user
