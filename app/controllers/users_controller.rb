@@ -1,16 +1,25 @@
 class UsersController < ApplicationController
-  
+
+  skip_before_action :verify_authenticity_token
+
   def new
-  	@user = User.new
   end
-  
+
   def create
-  	@user = User.new(user_params)
-  	if @user.save
-  		#render a view
-  	else
-  		render 'new'
-  	end
+    @user = User.new(user_params)
+    if @user.save
+      UserMailer.account_activation(@user).deliver_now
+      render json: @user
+    end
+  end
+
+  def show
+  end
+
+  def update
+  end
+
+  def destroy
   end
 
   private

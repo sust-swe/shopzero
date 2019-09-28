@@ -1,0 +1,5 @@
+Hi <%= @user.name %>,
+
+Welcome to the Shopzero! Click on the link below to activate your account:
+
+<%= activate_url(@user.activation_token, email: @user.email) %>
