@@ -1,19 +1,27 @@
 class SessionsController < ApplicationController
 
   skip_before_action :verify_authenticity_token
+  skip_before_action :authorize_request, only: :create
 
   def new
-    render json: current_user
+    if current_user
+      render json: current_user.as_json, status: :ok
+    else
+      head(:not_found)
+    end
   end
 
   def create
     @user = User.find_by(email: params[:email])
-    return if @user.nil?
-    if @user.authenticated?(:password,params[:password]) && @user.activated
+    if @user.nil?
+      return head(:not_found)
+    elsif @user.authenticated?(:password,params[:password]) && @user.activated
       log_in @user
-      render json: @user
+      auth_token = AuthenticateUser.new(params[:email],params[:password]).call
+      response = { message: Message.account_created, auth_token: auth_token}
+      render json: response.as_json, status: :created
     else
-      render json: { success: 0 }
+      head(:unauthorized)
     end
   end
 
@@ -30,7 +38,9 @@ class SessionsController < ApplicationController
 
     def current_user
       if session[:user_id]
-        @current_user ||= User.find(session[:user_id])
+        # @current_user ||= User.find(session[:user_id])
+        @current_user ||= User.where(id:session[:user_id]).select(:id,:firstname,:lastname,:email,:username)
+
       end
     end
 
