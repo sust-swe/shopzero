@@ -1,4 +1,0 @@
-secretfile filter=git-crypt diff=git-crypt
-*.key filter=git-crypt diff=git-crypt
-config/environments/development.rb filter=git-crypt diff=git-crypt
-secretdir/** filter=git-crypt diff=git-crypt
