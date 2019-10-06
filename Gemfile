@@ -38,7 +38,7 @@ gem 'jquery-rails', '~> 4.3.5'
 # Use haml
 gem 'haml', '~> 5.1.2'
 gem 'temple', '~> 0.8.2'
-gem 'bootstrap', '~> 4.0.0'
+gem 'bootstrap', '~> 4.3.1'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
