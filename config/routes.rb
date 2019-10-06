@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
+
   root 'users#new'
   
   get '/:id/activate',  to: 'account_activations#edit', as: 'activate'
+
+  post 'auth/login', to: 'authenticaton#authenticate'
   
   scope 'sessions' do
     get     '/user',      to: 'sessions#new',     as: 'new'
@@ -9,5 +12,5 @@ Rails.application.routes.draw do
     delete  '/logout',    to: 'sessions#destroy', as: 'destroy'
   end
   
-  resources :users
+  resources :users, only: [:create]
 end
