@@ -1,4 +1,5 @@
-# README
+# SHOPZERO
+
 
 **Shopzero** is a e-commerce website for delivering zero-waste products.
 Built with powerful rails, maintaining rest architecture. We are opensource as you can see how we store your data & what we do with it.
@@ -39,14 +40,14 @@ Built with powerful rails, maintaining rest architecture. We are opensource as y
 
 * Database creation : 
   
-  run  `rails db:create`
-  then `rails db:migrate`
+  > run  `rails db:create`    
+  > then `rails db:migrate`
 
 * Deployment instructions
   
- > run `rails server` to start server.
+  > run `rails server` to start server.
   
 * Usage
 
-> run `rails routes` to check available routes.
+  > run `rails routes` to check available routes.
 
