@@ -12,7 +12,8 @@ class AuthorizeApiRequest
     attr_reader :headers
 
     def user
-      @user ||= User.where(id: decoded_auth_token[:user_id]).select(user_attribs) if decoded_auth_token
+      # @user ||= User.where(id: decoded_auth_token[:user_id]).select(user_attribs) if decoded_auth_token
+      @user ||= User.find(decoded_auth_token[:user_id]) if decoded_auth_token
 
     rescue ActiveRecord::RecordNotFound => record_not_found_error
 
@@ -32,6 +33,6 @@ class AuthorizeApiRequest
     end
 
     def user_attribs
-      [:id,:firstname,:lastname,:email]
+      [:id,:username,:firstname,:lastname,:email]
     end
 end
