@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
   skip_before_action :authorize_request, only: :create
 
   def new
-    if current_user
+    if logged_in?
       render json: current_user.as_json, status: :ok
     else
       head(:not_found)
@@ -37,7 +37,7 @@ class SessionsController < ApplicationController
     end
 
     def logged_in?
-      !current_user.nil?
+      !session[:user_id].nil?
     end
 
     def log_out
