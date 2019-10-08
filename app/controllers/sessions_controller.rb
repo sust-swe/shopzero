@@ -27,21 +27,13 @@ class SessionsController < ApplicationController
 
   def destroy
     log_out
-    render json: { success: 1 }
+    head(:accepted)
   end
 
   private
 
     def log_in(user)
       session[:user_id] = user.id
-    end
-
-    def current_user
-      if session[:user_id]
-        # @current_user ||= User.find(session[:user_id])
-        @current_user ||= User.where(id:session[:user_id]).select(:id,:firstname,:lastname,:email,:username)
-
-      end
     end
 
     def logged_in?

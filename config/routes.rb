@@ -7,10 +7,15 @@ Rails.application.routes.draw do
   post 'auth/login', to: 'authenticaton#authenticate'
   
   scope 'sessions' do
-    get     '/user',      to: 'sessions#new',     as: 'new'
-    post    '/login',     to: 'sessions#create',  as: 'create'
-    delete  '/logout',    to: 'sessions#destroy', as: 'destroy'
+    get     '/user',      to: 'sessions#new',     as: 'current_user_session'
+    post    '/login',     to: 'sessions#create',  as: 'create_session'
+    delete  '/logout',    to: 'sessions#destroy', as: 'destroy_session'
   end
   
-  resources :users, only: [:create]
+  scope 'users' do
+    post     '/signup',      to: 'users#create',     as:  'create_user'
+    get     '/:id/update',  to: 'users#edit',       as:  'edit_user'
+    post     '/:id/update',  to: 'users#update',       as:  'update_user'
+  end
+
 end
