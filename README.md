@@ -10,7 +10,7 @@ Built with powerful rails, maintaining rest architecture. We are opensource as y
 * Rails version : **5.2.3**
   > Install rails with 
   ```
-  gem install rails v=5.2.3
+  gem install rails -v 5.2.3
   ```   
   > run 
   ```
