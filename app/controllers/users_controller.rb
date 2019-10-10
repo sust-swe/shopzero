@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   skip_before_action :verify_authenticity_token
-  skip_before_action :authorize_request, only: :create
+  before_action :authorize_request, only: [:edit,:update]
   before_action :check_user_right, only: [:edit,:update]
 
   def create

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   root 'users#new'
   
   get '/:id/activate',  to: 'account_activations#edit', as: 'activate'
