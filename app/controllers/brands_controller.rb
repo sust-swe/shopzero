@@ -1,7 +1,6 @@
 class BrandsController < ApplicationController
 
   skip_before_action :verify_authenticity_token
-  skip_before_action :authorize_request
 
   def create
     @brand = Brand.new(brand_params)
