@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  brand_id: 1
+  name: MyString
+  sales_price: 
+  retail_price: 
+
+two:
+  brand_id: 1
+  name: MyString
+  sales_price: 
+  retail_price: 
