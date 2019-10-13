@@ -1,19 +1,16 @@
 class BrandsController < ApplicationController
 
-  skip_before_action :verify_authenticity_token
+  def index
+    render json: Brand.all.as_json
+  end
 
-  def create
-    @brand = Brand.new(brand_params)
-    if @brand.save!
-      render json: @brand
+  def show
+    if params[:id].present?
+      @brands = Brand.find(params[:id])
     else
-      head(:forbidden)
+      head(:not_found)
     end
+      render json: @brands.as_json
   end
 
-  private
-
-  def brand_params
-    params.require(:brand).permit(:name)
-  end
 end

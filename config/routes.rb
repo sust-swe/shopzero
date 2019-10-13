@@ -19,9 +19,6 @@ Rails.application.routes.draw do
     post      '/:id/update',  to: 'users#update',       as:  'update_user'
   end
 
-  scope 'brands' do
-    post      '/create',      to: 'brands#create'
-    
-  end
+  resources :brands, only: [:show,:index]
 
 end
