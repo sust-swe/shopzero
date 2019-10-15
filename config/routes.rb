@@ -19,6 +19,10 @@ Rails.application.routes.draw do
     post      '/:id/update',  to: 'users#update',       as:  'update_user'
   end
 
+  scope 'products' do
+    get       '/search',      to: 'products#search',    as: 'search_product'
+  end
+
   resources :brands, only: [:show,:index]
 
 end
