@@ -2,7 +2,7 @@
 
 
 **Shopzero** is a e-commerce website for delivering zero-waste products.
-Built with powerful rails, maintaining rest architecture. We are opensource as you can see how we store your data & what we do with it.
+Built with rails, maintaining rest architecture. We are opensource as you can see how we store your data & what we do with it.
 
 * Ruby version : **2.5.3**
   > Ruby installation instruction for ubuntu 18.04 can be found on [DigitalOcean Article](https://www.digitalocean.com/community/tutorials/how-to-install-ruby-on-rails-with-rbenv-on-ubuntu-18-04)
