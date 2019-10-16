@@ -1,6 +1,5 @@
-class Brand < ApplicationRecord
+class Category < ApplicationRecord
   has_many :products
-  has_many :categories, through: :products
+  has_many :brands, through: :products
   validates :name, uniqueness: true, presence: true
-
 end

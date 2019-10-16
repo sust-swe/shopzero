@@ -1,3 +1,4 @@
+require 'faker'
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 #
@@ -5,3 +6,29 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+#Create Brands
+
+(1..10).each {
+  Brand.create!(name: Faker::Restaurant.unique.name)
+}
+
+
+#Create Categories
+
+(1..10).each {
+  Category.create!(name: Faker::Restaurant.unique.type)
+}
+
+#Create Products
+
+(1..5).each do |i|
+  (1..2).each do |j|
+    (1..10).each do |k|
+      Product.create!(
+      name: Faker::Food.dish, brand_id:k,category_id:(j*k)%10+1,
+      sales_price: Faker::Number.decimal(l_digits: 2, r_digits: 2),
+      retail_price: Faker::Number.decimal(l_digits: 2, r_digits: 2) )
+    end
+  end
+end
