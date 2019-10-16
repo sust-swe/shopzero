@@ -1,3 +1,4 @@
+require 'faker'
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 #
@@ -8,24 +9,26 @@
 
 #Create Brands
 
-Brand.create!(name: "Aarong")
-Brand.create!(name: "Pran")
-Brand.create!(name: "Shezan")
-Brand.create!(name: "Fresh")
-Brand.create!(name: "Nestle")
-Brand.create!(name: "Teer")
+(1..10).each {
+  Brand.create!(name: Faker::Restaurant.unique.name)
+}
+
 
 #Create Categories
 
-Category.create!(name: "Milk")
-Category.create!(name: "Juice")
-Category.create!(name: "Food")
+(1..10).each {
+  Category.create!(name: Faker::Restaurant.unique.type)
+}
 
 #Create Products
 
-Product.create!(name: "Dairy Milk",brand_id:1,category_id:1)
-Product.create!(name: "Dairy Milk",brand_id:2,category_id:1)
-Product.create!(name: "Mango Juice",brand_id:2,category_id:2)
-Product.create!(name: "Chocolate Milk Juice",brand_id:1,category_id:2)
-Product.create!(name: "Chocolate Milk Juice",brand_id:1,category_id:2)
-Product.create!(name: "Mango Milk Shake",brand_id:1,category_id:2)
+(1..5).each do |i|
+  (1..2).each do |j|
+    (1..10).each do |k|
+      Product.create!(
+      name: Faker::Food.dish, brand_id:k,category_id:(j*k)%10+1,
+      sales_price: Faker::Number.decimal(l_digits: 2, r_digits: 2),
+      retail_price: Faker::Number.decimal(l_digits: 2, r_digits: 2) )
+    end
+  end
+end

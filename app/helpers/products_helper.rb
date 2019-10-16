@@ -7,7 +7,7 @@ module ProductsHelper
     def search_by_category(objects,value)
       category = Category.find_by(name:value)
       if category.present?
-        objects.where('category_id like ?', "%#{category.id}%")
+        objects.where('category_id like ?', "#{category.id}")
       else
         Category.none
       end
@@ -16,7 +16,7 @@ module ProductsHelper
     def search_by_brand(objects,value)
       brand = Brand.find_by(name:value)
       if brand.present?
-        objects.where('brand_id like ?', "%#{brand.id}%")
+        objects.where('brand_id like ?', "#{brand.id}")
       else
         Brand.none
       end
