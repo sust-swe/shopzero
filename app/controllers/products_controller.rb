@@ -3,7 +3,7 @@ class ProductsController < ApplicationController
   include ProductsHelper
 
   def search
-    head(:not_found) unless params[:name].present?
+    head(:not_found) if params[:name].nil? and return
 
     @products = search_by_product(params[:name])
     
@@ -12,19 +12,24 @@ class ProductsController < ApplicationController
         value = attr.to_sym
         @products = search_by(attr,@products,params[value]) if params[value]
       end
+      render json: @products.as_json(
+        include: searchable_attribs_json_params ,only: product_json_params
+        ) and return
     end
-
-    render json: @products
   end
 
   private
 
-    def search_by(attr,from,value)
+    def search_by(attr,objects,value)
       if searchable_attribs.include? attr
-        send("search_by_#{attr}",from,"#{value}")
+        send("search_by_#{attr}",objects,value)
       else
         head(:not_found)
       end
+    end
+
+    def product_json_params
+      [:id,:name,:sales_price,:retail_price]
     end
 
 end

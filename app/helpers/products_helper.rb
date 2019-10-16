@@ -1,15 +1,15 @@
 module ProductsHelper
 
     def searchable_attribs
-      ["category","brand","product" ]
+      ["category","brand" ]
     end
 
     def search_by_category(objects,value)
-      category = Catagory.find_by(name:value)
+      category = Category.find_by(name:value)
       if category.present?
-        objects.where('catagory_id like ?', "%#{category.id}%")
+        objects.where('category_id like ?', "%#{category.id}%")
       else
-        Catagory.none
+        Category.none
       end
     end
 
@@ -26,4 +26,11 @@ module ProductsHelper
       Product.where("name like ?", "%#{value}%")
     end
     
+    def searchable_attribs_json_params
+      array = Array.new
+      searchable_attribs.each do |attr|
+        array.push( { attr.to_sym => { only: [:name,:id]} } )
+      end
+      return array
+    end
 end
