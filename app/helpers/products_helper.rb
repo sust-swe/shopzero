@@ -33,4 +33,8 @@ module ProductsHelper
       end
       return array
     end
+
+    def product_json_params
+      [:id,:name,:sales_price,:retail_price]
+    end
 end

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  devise_for :admins
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   root 'users#new'
   
@@ -21,6 +22,12 @@ Rails.application.routes.draw do
 
   scope 'products' do
     get       '/search',      to: 'products#search',    as: 'search_product'
+  end
+
+  scope 'cart_items' do
+    post      '/create',      to: 'cart_items#create',  as: 'create_cart_item'
+    get       '/cart',            to: 'cart_items#show',     as: 'show_cart_items'
+    post       '/:product_id/update',      to: 'cart_items#update',    as: 'update_cart_item' 
   end
 
   resources :brands, only: [:show,:index]

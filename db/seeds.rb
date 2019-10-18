@@ -32,3 +32,18 @@ require 'faker'
     end
   end
 end
+
+#Create Users
+
+(1..50).each do |i|
+  User.create!(
+    firstname: Faker::Name.first_name,
+    lastname: Faker::Name.last_name,
+    email: "test#{i}@shopzero.com",
+    username: "test#{i}",
+    password: "123456",
+    password_confirmation: "123456",
+    activated: true,
+    activated_at: Time.now
+    )
+end
