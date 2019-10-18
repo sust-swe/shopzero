@@ -38,4 +38,9 @@ RailsAdmin.config do |config|
     # history_index
     # history_show
   end
+
+  config.authenticate_with do
+    warden.authenticate! scope: :admin
+  end
+  config.current_user_method(&:current_admin)
 end
