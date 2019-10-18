@@ -36,10 +36,6 @@ class CartItemsController < ApplicationController
       params.permit(:product_id,:count,:checked_at_checkout)
     end
 
-    def cart_update_params
-      params.permit(:)
-    end
-
     def render_cart_items(cart_items)
       render json: cart_items,include: {product: {only: product_json_params} },
     only: cart_json_params
