@@ -4,6 +4,7 @@ class CartItemsController < ApplicationController
 
   skip_before_action :verify_authenticity_token
   before_action :authorize_request
+  skip_before_action :authorize_request, only: :testcart
 
   def create
     @cart_item = current_user.cart_items.new(cart_item_params)
@@ -20,14 +21,18 @@ class CartItemsController < ApplicationController
   end
 
   def update
-    # @cart_item = current_user.cart_items.find_by(
-    #   product_id: params[:product_id])
-    # if @cart_item.update_attributes(cart_item_params)
+    @cart_item = current_user.cart_items.find_by(
+      product_id: params[:product_id])
+    if @cart_item.update_attributes(cart_item_params)
     #   #ToDo: Safely Handle Update
     #   render_cart_items @cart_item and return
     # else
     #   render json: Message.unauthorized.as_json,status: 422 
-    # end
+      ActionCable.server.broadcast 'cart_items_channel', @cart_item.as_json and return
+    end
+  end
+
+  def testcart
   end
 
   private

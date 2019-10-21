@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   devise_for :admins
+  mount ActionCable.server => '/cable'
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   root 'users#new'
   
@@ -28,6 +29,7 @@ Rails.application.routes.draw do
     post      '/create',      to: 'cart_items#create',  as: 'create_cart_item'
     get       '/cart',            to: 'cart_items#show',     as: 'show_cart_items'
     post       '/:product_id/update',      to: 'cart_items#update',    as: 'update_cart_item' 
+    get       '/test',        to: 'cart_items#testcart'
   end
 
   resources :brands, only: [:show,:index]

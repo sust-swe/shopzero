@@ -60,6 +60,7 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 end
 Rails.application.configure do
+   config.action_cable.allowed_request_origins = [%r{moz-extension://*}, %r{https://*}]
 
   # Settings specified here will take precedence over those in config/application.rb.
 
