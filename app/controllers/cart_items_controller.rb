@@ -22,8 +22,8 @@ class CartItemsController < ApplicationController
 
   def update
     @cart_item = current_user.cart_items.find_by(
-      product_id: params[:product_id])
-    if @cart_item.update_attributes(cart_item_params)
+      product_id: params[:product_id]) || CartItem.new
+        if @cart_item.update_attributes!(cart_item_params)
     #   #ToDo: Safely Handle Update
     #   render_cart_items @cart_item and return
     # else

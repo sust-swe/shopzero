@@ -32,6 +32,10 @@ Rails.application.routes.draw do
     get       '/test',        to: 'cart_items#testcart'
   end
 
+  scope 'orders' do
+    post      '/create',      to: 'orders#create',  as: 'create_orders'
+  end
+
   resources :brands, only: [:show,:index]
 
 end
