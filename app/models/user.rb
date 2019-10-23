@@ -2,6 +2,7 @@ class User < ApplicationRecord
 
   attr_accessor :activation_token
   has_many :cart_items
+  has_many :orders
 
   before_create :create_activation_digest
   has_secure_password
