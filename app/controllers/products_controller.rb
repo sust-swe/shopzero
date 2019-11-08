@@ -2,6 +2,11 @@ class ProductsController < ApplicationController
 
   include ProductsHelper
 
+  def index
+    @products = Product.all
+    render json: @products.as_json(only: product_json_params) and return
+  end
+
   def search
     head(:not_found) if params[:name].nil? and return
 

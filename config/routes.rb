@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   end
 
   scope 'products' do
+    get       '/index',    to: 'products#index',     as: 'index_products'
     get       '/search',      to: 'products#search',    as: 'search_product'
   end
 
