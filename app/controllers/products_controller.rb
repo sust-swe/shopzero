@@ -2,6 +2,11 @@ class ProductsController < ApplicationController
 
   include ProductsHelper
 
+  def show
+    @product = Product.find(params[:id])
+    render json: @product.as_json(only: product_json_params) and return
+  end
+
   def index
     @products = Product.all
     render json: @products.as_json(only: product_json_params) and return
