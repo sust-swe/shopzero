@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+
+<html>
+   <head>
+      
+      <script type = "text/javascript">
+         function WebSocketTest() {
+            
+            if ("WebSocket" in window) {
+               alert("WebSocket is supported by your Browser!");
+               
+               // Let us open a web socket
+               var ws = new WebSocket("ws://localhost:5000/cable/");
+        
+               ws.onopen = function() {
+                  const msg = {
+                     command: 'subscribe',
+                     identifier: JSON.stringify({
+                     channel: 'CartItemsChannel',
+                     }),
+                  };
+                  ws.send(JSON.stringify(msg));
+                  document.getElementById("p1").innerHTML = "Message is sent...";
+               };
+        
+               ws.onmessage = function (evt) { 
+                  var received_msg = JSON.parse(evt.data);
+                  if(received_msg.type === "ping")
+                     return;
+                  document.getElementById("p1").innerHTML = JSON.stringify(received_msg);
+               };
+        
+               ws.onclose = function() { 
+                  
+                  // websocket is closed.
+                  document.getElementById("p1").innerHTML = "Connection is closed..."; 
+               };
+            } else {
+              
+               // The browser doesn't support WebSocket
+               document.getElementById("p1").innerHTML = "WebSocket NOT supported by your Browser!";
+            }
+         }
+      </script>
+    
+   </head>
+   
+   <body>
+      <div id = "sse">
+         <a href = "javascript:WebSocketTest()">Run WebSocket</a>
+      </div>
+      <p id="p1">Hello World!</p>
+   </body>
+</html>

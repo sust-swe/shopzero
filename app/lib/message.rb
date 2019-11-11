@@ -24,6 +24,10 @@ class Message
     'Account created successfully'
   end
 
+  def self.logged_in
+    'Logged in successfully'
+  end
+
   def self.account_not_created
     'Account could not be created'
   end

@@ -2,6 +2,16 @@ class ProductsController < ApplicationController
 
   include ProductsHelper
 
+  def show
+    @product = Product.find(params[:id])
+    render json: @product.as_json(include: searchable_attribs_json_params ,only: product_json_params) and return
+  end
+
+  def index
+    @products = Product.all
+    render json: @products.as_json(include: searchable_attribs_json_params ,only: product_json_params) and return
+  end
+
   def search
     head(:not_found) if params[:name].nil? and return
 
