@@ -1,6 +1,6 @@
 class CartItemsChannel < ApplicationCable::Channel
   def subscribed
-    stream_from "cart_items_channel"
+    stream_for current_user
   end
 
   def unsubscribed
