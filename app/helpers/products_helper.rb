@@ -34,6 +34,6 @@ module ProductsHelper
   end
 
   def product_json_params
-    [:id, :name, :sales_price, :retail_price, :picture]
+    [:id, :name, :sales_price, :retail_price, :picture, :stock, :features, :description]
   end
 end

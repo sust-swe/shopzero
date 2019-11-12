@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_12_124942) do
+ActiveRecord::Schema.define(version: 2019_11_12_134039) do
 
   create_table "admins", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -68,6 +68,9 @@ ActiveRecord::Schema.define(version: 2019_11_12_124942) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "picture"
+    t.text "features"
+    t.integer "stock"
+    t.text "description"
     t.index ["brand_id"], name: "index_products_on_brand_id"
     t.index ["category_id"], name: "index_products_on_category_id"
   end
@@ -83,6 +86,14 @@ ActiveRecord::Schema.define(version: 2019_11_12_124942) do
     t.string "activation_digest"
     t.boolean "activated", default: false
     t.datetime "activated_at"
+    t.string "phone_no"
+    t.string "house_no"
+    t.string "block_no"
+    t.string "road"
+    t.string "area"
+    t.string "city"
+    t.string "country"
+    t.decimal "postcode", precision: 10
   end
 
   add_foreign_key "orders", "products"
