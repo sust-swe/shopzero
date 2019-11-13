@@ -50,4 +50,8 @@ Built with rails, maintaining rest architecture. We are opensource as you can se
 * Usage
 
   > run `rails routes` to check available routes.
+  
+ * Make Sure these are Installed:
+ 
+  > sudo apt-get install libxml2-dev build-essential libcurl4-openssl-dev
 
