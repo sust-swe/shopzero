@@ -6,7 +6,7 @@ module ApplicationCable
       # puts cookies[:token]
       # puts request.params.to_a
       # self.current_user = authorize_request
-      @current_user ||= authorize_request
+      self.current_user ||= authorize_request
     end
 
     private

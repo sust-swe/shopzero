@@ -1,5 +1,4 @@
 class BrandsController < ApplicationController
-
   def index
     render json: Brand.all.as_json
   end
@@ -8,9 +7,8 @@ class BrandsController < ApplicationController
     if params[:id].present?
       @brands = Brand.find(params[:id])
     else
-      head(:not_found)
+      return head(:not_found)
     end
-      render json: @brands.as_json
+    render json: @brands.as_json
   end
-
 end

@@ -40,9 +40,4 @@ class CartItemsController < ApplicationController
     render json: cart_items, include: { product: { only: product_json_params } },
            only: cart_json_params
   end
-
-  def broadcast_cart
-    @cart_items = current_user.cart_items
-    CartItemsChannel.broadcast_to(current_user, @cart_items.as_json) and return
-  end
 end
