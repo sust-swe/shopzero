@@ -2,7 +2,7 @@ class CartItemsChannel < ApplicationCable::Channel
   def subscribed
     stream_for current_user
     CartItemsChannel.broadcast_to(current_user, { type: "cartItems",
-                                                 data: @cart_items.as_json })
+                                                 data: current_user.cart_items.as_json })
   end
 
   def unsubscribed
