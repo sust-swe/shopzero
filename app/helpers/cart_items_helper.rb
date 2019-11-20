@@ -5,6 +5,7 @@ module CartItemsHelper
 
   def broadcast_cart
     @cart_items = current_user.cart_items
-    CartItemsChannel.broadcast_to(current_user, @cart_items.as_json) and return
+    CartItemsChannel.broadcast_to(current_user, { type: "cartItems",
+                                                 data: @cart_items.as_json })
   end
 end
