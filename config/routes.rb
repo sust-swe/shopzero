@@ -31,6 +31,7 @@ Rails.application.routes.draw do
     get "/cart", to: "cart_items#show", as: "show_cart_items"
     post "/update", to: "cart_items#update", as: "update_cart_item"
     get "/test", to: "cart_items#testcart"
+    delete "/delete", to: "cart_items#destroy"
   end
 
   scope "orders" do
