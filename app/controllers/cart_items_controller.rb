@@ -7,12 +7,23 @@ class CartItemsController < ApplicationController
   skip_before_action :authorize_request, only: :testcart
 
   def create
-    @cart_item = current_user.cart_items.new(cart_item_params)
-    if @cart_item.save
-      render_cart_items @cart_item
-      broadcast_cart and return
+    @item = current_user.cart_items.find_by(product_id: params[:product_id])
+    if @item.nil?
+      @cart_item = current_user.cart_items.new(cart_item_params)
+      if @cart_item.save
+        render_cart_items @cart_item
+        broadcast_cart and return
+      else
+        render json: Message.unauthorized.as_json, status: 422
+      end
     else
-      render json: Message.unauthorized.as_json, status: 422
+      params[:count] += @item.count
+      if @item.update_attributes!(cart_item_params)
+        render_cart_items @item
+        broadcast_cart
+      else
+        render json: Message.unauthorized.as_json, status: 422
+      end
     end
   end
 
