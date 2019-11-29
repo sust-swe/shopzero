@@ -15,12 +15,17 @@ class OrdersController < ApplicationController
             order = current_user.orders.new(product_id: cart_item.product_id)
             @order_no ||= order.new_order_no current_user.id
             order.order_no = @order_no
-            order_messages.push(message: "#{product.name} #{order.save ? "success" : "failed"}")
-            cart_item.delete
+            if order.save!
+              product.decrement!(:stock, cart_item.count)
+              order_messages.push(message: "#{product.name} success")
+            else
+              order_messages.push(message: "#{product.name} failed")
+            end
           else
             order_messages.push(message: "#{product.name} is Out of stock")
           end
         end
+        cart_item.delete
       end
     end
     render json: order_messages.as_json
