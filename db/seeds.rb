@@ -9,6 +9,7 @@ require "faker"
 
 #Create Admin
 Admin.create!(email: "ishan.bn14@gmail.com", password: "123456")
+Admin.create!(email: "tushitatahsin@gmail.com", password: "123456")
 
 #Create Brands
 
