@@ -7,7 +7,6 @@ require "faker"
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-
 #Create Admin
 Admin.create!(email: "ishan.bn14@gmail.com", password: "123456")
 
@@ -33,7 +32,7 @@ Admin.create!(email: "ishan.bn14@gmail.com", password: "123456")
         sales_price: Faker::Number.decimal(l_digits: 2, r_digits: 2),
         retail_price: Faker::Number.decimal(l_digits: 2, r_digits: 2),
         stock: 100,
-        picture: "topic-2.jpg"
+        picture: Rails.root.join("app/assets/images/404.jpg").open,
       )
     end
   end
