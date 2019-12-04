@@ -38,7 +38,7 @@ class OrdersController < ApplicationController
 
   def show
     @orders = current_user.orders
-    render json: @orders, include: {product: {include: [:brand] } }
+    render json: @orders, include: { product: { include: [:brand] } }
   end
 
   private
