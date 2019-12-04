@@ -63,7 +63,7 @@ class CartItemsController < ApplicationController
   end
 
   def render_cart_items(cart_items)
-    render json: cart_items, include: { product: { only: product_json_params } },
+    render json: cart_items, include: { product: { only: product_json_params, include: [:brand] } },
            only: cart_json_params, status: 201
   end
 end
