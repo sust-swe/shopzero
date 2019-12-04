@@ -13,10 +13,10 @@ class OrdersController < ApplicationController
         product.with_lock do
           if (product.stock > 0)
             order = current_user.orders.new(order_params)
-            order.product_id= cart_item.product_id;
-            order.count= cart_item.count;
-            order.delivered= false;
-            order.price= cart_item.count * product.sales_price
+            order.product_id = cart_item.product_id
+            order.count = cart_item.count
+            order.delivered = false
+            order.price = cart_item.count * product.sales_price
             @order_no ||= order.new_order_no current_user.id
             order.order_no = @order_no
             if order.save!
@@ -38,7 +38,7 @@ class OrdersController < ApplicationController
 
   def show
     @orders = current_user.orders
-    render json: @orders, include: [:product]
+    render json: @orders, include: {product: {include: [:brand] } }
   end
 
   private
