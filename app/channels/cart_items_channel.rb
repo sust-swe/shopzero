@@ -12,7 +12,7 @@ class CartItemsChannel < ApplicationCable::Channel
   private
 
   def broadcast_cart_params(cart_items)
-    cart_items.as_json(include: { product: { only: product_json_params } },
+    cart_items.as_json(include: { product: { only: product_json_params, include: [:brand] } },
                        only: cart_json_params)
   end
 

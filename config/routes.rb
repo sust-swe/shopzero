@@ -36,6 +36,7 @@ Rails.application.routes.draw do
 
   scope "orders" do
     post "/create", to: "orders#create", as: "create_orders"
+    get "/orders", to: "orders#show", as: "show_orders"
   end
 
   resources :brands, only: [:show, :index]

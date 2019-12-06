@@ -12,7 +12,11 @@ class OrdersController < ApplicationController
         product = cart_item.product
         product.with_lock do
           if (product.stock > 0)
-            order = current_user.orders.new(product_id: cart_item.product_id)
+            order = current_user.orders.new(order_params)
+            order.product_id = cart_item.product_id
+            order.count = cart_item.count
+            order.delivered = false
+            order.price = cart_item.count * product.sales_price
             @order_no ||= order.new_order_no current_user.id
             order.order_no = @order_no
             if order.save!
@@ -28,7 +32,18 @@ class OrdersController < ApplicationController
         cart_item.delete
       end
     end
-    render json: order_messages.as_json
+    render json: [order_messages]
     broadcast_cart
+  end
+
+  def show
+    @orders = current_user.orders
+    render json: @orders, include: { product: { include: [:brand] } }
+  end
+
+  private
+
+  def order_params
+    params.permit(:house_no, :road, :count, :delivered, :area, :city, :country, :phone_no)
   end
 end
