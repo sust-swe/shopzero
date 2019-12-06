@@ -16,10 +16,14 @@ Admin.create!(email: "tushitatahsin@gmail.com", password: "123456")
 Brand.create!(name: "KUMO Creations")
 Brand.create!(name: "Brheez")
 Brand.create!(name: "Reusables")
+Brand.create!(name: "Sawdust City")
 
 #Create Categories
 
-Category.create!(name: "Disposable Cutlery")
+Category.create!(name: "Cutlery")
+Category.create!(name: "Crockeries")
+Category.create!(name: "Recyclers")
+Category.create!(name: "Containers")
 
 #Create Products
 Product.create!(
@@ -35,17 +39,26 @@ Product.create!(
 Product.create!(
   name: "Disposable Bamboo Style Square Bowls 5.5' (16oz)",
   brand_id: "2",
-  category_id: "1",
+  category_id: "2",
   sales_price: "20",
   retail_price: "18",
   stock: 100,
   picture: Rails.root.join("app/assets/images/disposable_bowl_bhreez.jpg").open,
 )
+Product.create!(
+  name: " Tilt-Out Garbage Bin (Solid - Red) ",
+  brand_id: "4",
+  category_id: "3",
+  sales_price: "120",
+  retail_price: "110",
+  stock: 100,
+  picture: Rails.root.join("app/assets/images/tilt_out_trash_can.jpg").open,
+)
 
 Product.create!(
   name: "Hydro Flask Water Bottle - Stainless Steel & Vacuum Insulated",
-  brand_id: "1",
-  category_id: "1",
+  brand_id: "3",
+  category_id: "4",
   sales_price: "20",
   retail_price: "18",
   stock: 100,

@@ -18,7 +18,8 @@ class SessionsController < ApplicationController
     elsif @user.authenticated?(:password,params[:password]) && @user.activated
       log_in @user
       auth_token = AuthenticateUser.new(params[:email],params[:password]).call
-      response = { message: Message.logged_in, auth_token: auth_token, user: @user.as_json(only: [:id,:firstname,:lastname,:email])}
+      response = { message: Message.logged_in, auth_token: auth_token, 
+        user: @user.as_json(except: [:password_digest, :activation_digest])}
       render json: response.as_json, status: :created
     else
       head(:unauthorized)
