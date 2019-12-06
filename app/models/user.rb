@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  nilify_blanks
 
   attr_accessor :activation_token
   has_many :cart_items
