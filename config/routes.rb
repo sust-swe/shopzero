@@ -40,5 +40,6 @@ Rails.application.routes.draw do
   end
 
   resources :brands, only: [:show, :index]
+  resources :reviews
   resources :categories, only: [:show, :index]
 end

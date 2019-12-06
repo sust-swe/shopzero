@@ -2,7 +2,7 @@ class Order < ApplicationRecord
   belongs_to :product
   belongs_to :user
 
-  # validates :product_id, uniqueness: { scope: [:user_id, :order_no] }
+  validates :product_id, uniqueness: { scope: [:user_id, :order_no] }
 
   def new_order_no(user_id)
     last_order = Order.where(user_id: user_id).last

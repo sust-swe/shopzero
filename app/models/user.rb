@@ -4,6 +4,7 @@ class User < ApplicationRecord
   attr_accessor :activation_token
   has_many :cart_items
   has_many :orders
+  has_many :reviews, through: :products
 
   before_create :create_activation_digest
   has_secure_password
@@ -26,10 +27,9 @@ class User < ApplicationRecord
   end
 
   def User.send_activation_code
-
   end
 
-  def authenticated?(attribute,token)
+  def authenticated?(attribute, token)
     digest = self.send("#{attribute}_digest")
     return false if digest.nil?
     BCrypt::Password.new(digest).is_password?(token)
@@ -41,8 +41,8 @@ class User < ApplicationRecord
 
   private
 
-    def create_activation_digest
-      self.activation_token = User.new_token
-      self.activation_digest = User.digest(activation_token)
-    end
+  def create_activation_digest
+    self.activation_token = User.new_token
+    self.activation_digest = User.digest(activation_token)
+  end
 end
