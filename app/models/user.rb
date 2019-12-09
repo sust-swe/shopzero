@@ -4,7 +4,7 @@ class User < ApplicationRecord
   attr_accessor :activation_token
   has_many :cart_items
   has_many :orders
-  has_many :reviews, through: :products
+  has_many :reviews
 
   before_create :create_activation_digest
   has_secure_password

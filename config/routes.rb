@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     post "/signup", to: "users#create", as: "create_user"
     get "/:id/update", to: "users#edit", as: "edit_user"
     post "/:id/update", to: "users#update", as: "update_user"
+    post "/change-password", to: "users#change_password", as: "change_password_user"
   end
 
   scope "products" do

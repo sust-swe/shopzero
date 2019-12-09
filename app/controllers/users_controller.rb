@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   skip_before_action :verify_authenticity_token
-  before_action :authorize_request, only: [:edit, :update]
+  before_action :authorize_request, only: [:edit, :update, :change_password]
   before_action :check_user_right, only: [:edit, :update]
 
   def create
@@ -24,6 +24,18 @@ class UsersController < ApplicationController
       render json: @current_user.as_json(except: excluded_params), status: :accepted
     else
       head(:forbidden)
+    end
+  end
+
+  def change_password
+    if current_user&.authenticate(params[:password])
+      if current_user.update_attributes(password: params[:new_password])
+        render json: { message: "Password Updated Successfully!!" }
+      else
+        render json: { message: "Failed.Please make sure password length is atleast 6." }, status: 403
+      end
+    else
+      render json: { message: "Invalid User/Password. Who's this?" }, status: 422
     end
   end
 
