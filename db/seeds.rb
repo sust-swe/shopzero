@@ -89,7 +89,7 @@ Product.create!(
 
 #Create Users
 
-(1..50).each do |i|
+(1..10).each do |i|
   User.create!(
     firstname: Faker::Name.first_name,
     lastname: Faker::Name.last_name,
@@ -103,10 +103,11 @@ Product.create!(
 end
 
 (1..4).each do |product|
-  (1..50).each do |user|
+  (1..5).each do |user|
     Order.create!(product_id: product, user_id: user, order_no: user, count: 5, delivered: true)
     Review.create!(product_id: product, user_id: user,
                    title: "Lorem ipsum ex in sunt ut.",
+                   rating: 5,
                    body: "Lorem ipsum commodo ut adipisicing mollit irure irure anim consequat ullamco id culpa mollit eiusmod exercitation irure proident aute amet ut ullamco voluptate in nisi enim officia ut occaecat ut mollit esse in cupidatat enim excepteur ad ex aliqua aute.")
   end
 end

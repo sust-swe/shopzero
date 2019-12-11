@@ -32,7 +32,7 @@ class UsersController < ApplicationController
       if current_user.update_attributes(password: params[:new_password])
         render json: { message: "Password Updated Successfully!!" }
       else
-        render json: { message: "Failed.Please make sure password length is atleast 6." }, status: 403
+        render json: { message: "Failed.Please make sure password length is atleast 8." }, status: 403
       end
     else
       render json: { message: "Invalid User/Password. Who's this?" }, status: 422
