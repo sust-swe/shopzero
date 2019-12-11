@@ -72,6 +72,7 @@ Product.create!(
   features: "Cillum sint nostrud incididunt.;Lorem ipsum voluptate laboris velit pariatur consectetur.;Labore dolore ea.;Deserunt dolore do ut nisi.",
   description: "Labore sint irure sunt esse aliquip culpa est pariatur consectetur laboris laboris et nulla ad cillum cupidatat aliquip laborum nulla aliqua sint dolor cillum laboris ad.",
 )
+
 # (1..5).each do |i|
 #   (1..2).each do |j|
 #     (1..10).each do |k|
@@ -99,4 +100,13 @@ Product.create!(
     activated: true,
     activated_at: Time.now,
   )
+end
+
+(1..4).each do |product|
+  (1..50).each do |user|
+    Order.create!(product_id: product, user_id: user, order_no: user, count: 5, delivered: true)
+    Review.create!(product_id: product, user_id: user,
+                   title: "Lorem ipsum ex in sunt ut.",
+                   body: "Lorem ipsum commodo ut adipisicing mollit irure irure anim consequat ullamco id culpa mollit eiusmod exercitation irure proident aute amet ut ullamco voluptate in nisi enim officia ut occaecat ut mollit esse in cupidatat enim excepteur ad ex aliqua aute.")
+  end
 end
