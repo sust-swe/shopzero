@@ -70,7 +70,7 @@ Product.create!(
   stock: 100,
   picture: Rails.root.join("app/assets/images/hydro_flusk.jpg").open,
   features: "Cillum sint nostrud incididunt.;Lorem ipsum voluptate laboris velit pariatur consectetur.;Labore dolore ea.;Deserunt dolore do ut nisi.",
-  description: "Labore sint irure sunt esse aliquip culpa est pariatur consectetur laboris laboris et nulla ad cillum cupidatat aliquip laborum nulla aliqua sint dolor cillum laboris ad."
+  description: "Labore sint irure sunt esse aliquip culpa est pariatur consectetur laboris laboris et nulla ad cillum cupidatat aliquip laborum nulla aliqua sint dolor cillum laboris ad.",
 )
 # (1..5).each do |i|
 #   (1..2).each do |j|

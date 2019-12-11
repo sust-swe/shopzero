@@ -26,6 +26,11 @@ class ReviewsController < ApplicationController
     render json: @response, status: @status
   end
 
+  def show
+    @reviews = Review.where(product_id: params[:id])
+    render json: @reviews
+  end
+
   def destroy
     @review = Review.find(params[:id])
     if @review
