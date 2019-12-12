@@ -1,5 +1,5 @@
 class ReviewsController < ApplicationController
-  before_action :authorize_request, only: [:new , :create, :destroy]
+  before_action :authorize_request, only: [:new, :create, :destroy]
   skip_before_action :verify_authenticity_token
 
   def new
@@ -27,7 +27,13 @@ class ReviewsController < ApplicationController
   end
 
   def show
-    @reviews = Review.where(product_id: params[:id])
+    if request.headers[:Authorization].present?
+      if authorize_request && current_user
+        @reviews = Review.where(product_id: params[:id]).where.not(user_id: current_user.id)
+      end
+    else
+      @reviews = Review.where(product_id: params[:id])
+    end
     render json: @reviews
   end
 
