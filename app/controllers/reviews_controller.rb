@@ -34,7 +34,7 @@ class ReviewsController < ApplicationController
     else
       @reviews = Review.where(product_id: params[:id])
     end
-    render json: @reviews
+    render json: { review: @reviews, total_rating: @reviews.average(:rating) }
   end
 
   def destroy
