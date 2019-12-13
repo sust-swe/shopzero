@@ -4,8 +4,8 @@ class ReviewsController < ApplicationController
 
   def new
     can_review = is_reviewable?(params[:product_id])
-    review = Review.find_by(user_id: current_user.id, product_id: params[:product_id])
-    render json: { can_review: can_review, review: review }
+    @review = Review.find_by(user_id: current_user.id, product_id: params[:product_id])
+    render json: { can_review: can_review, review: @review.as_json(:include => { :user => { :only => :username } }) }
   end
 
   def create
@@ -13,7 +13,7 @@ class ReviewsController < ApplicationController
       @review = Review.find_by(user_id: current_user.id, product_id: params[:product_id])
       if @review
         if @review.update_attributes!(review_params)
-          @response = { message: Message.successful, review: @review }
+          @response = { message: Message.successful, review: @review.as_json(:include => { :user => { :only => :username } }) }
           @status = 201
         else
           @response = { message: Message.unsuccessful }
@@ -21,7 +21,7 @@ class ReviewsController < ApplicationController
         end
       else
         if @review = current_user.reviews.create!(review_params)
-          @response = { message: Message.successful, review: @review }
+          @response = { message: Message.successful, review: @review.as_json(:include => { :user => { :only => :username } }) }
           @status = 201
         else
           @response = { message: Message.unsuccessful }
@@ -40,7 +40,8 @@ class ReviewsController < ApplicationController
     else
       @reviews = Review.where(product_id: params[:id])
     end
-    render json: { review: @reviews, total_rating: @reviews.average(:rating) }
+    render json: { review: @reviews.as_json(:include => { :user => { :only => :username } }),
+                  total_rating: @reviews.average(:rating) }
   end
 
   def destroy
@@ -62,5 +63,13 @@ class ReviewsController < ApplicationController
 
   def is_reviewable?(product_id)
     return !current_user.orders.where(product_id: product_id, delivered: true).empty?
+  end
+
+  def render_review_params(review)
+    return review.as_json(include: {
+                            user: {
+                              only: [:username],
+                            },
+                          })
   end
 end
