@@ -103,7 +103,7 @@ Product.create!(
 end
 
 (1..4).each do |product|
-  (1..5).each do |user|
+  (4..5).each do |user|
     Order.create!(product_id: product, user_id: user, order_no: user, count: 5, delivered: true)
     Review.create!(product_id: product, user_id: user,
                    title: "Lorem ipsum ex in sunt ut.",
