@@ -11,17 +11,23 @@ class ReviewsController < ApplicationController
   def create
     if is_reviewable?(params[:product_id])
       @review = Review.find_by(user_id: current_user.id, product_id: params[:product_id])
-      @review_method = @review ? "update_attributes!" : "create!"
-      if @review.send("#{@review_method}", review_params)
-        @response = { message: Message.successful, review: @review }
-        @status = 201
+      if @review
+        if @review.update_attributes!(review_params)
+          @response = { message: Message.successful, review: @review }
+          @status = 201
+        else
+          @response = { message: Message.unsuccessful }
+          status = 400
+        end
       else
-        @response = { message: Message.unsuccessful }
-        status = 400
+        if @review = current_user.reviews.create!(review_params)
+          @response = { message: Message.successful, review: @review }
+          @status = 201
+        else
+          @response = { message: Message.unsuccessful }
+          status = 400
+        end
       end
-    else
-      @response = { message: Message.permission_denied }
-      status = 422
     end
     render json: @response, status: @status
   end
