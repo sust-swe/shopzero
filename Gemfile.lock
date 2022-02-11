@@ -368,7 +368,8 @@ GEM
     pg (1.1.4)
     popper_js (1.14.5)
     public_suffix (4.0.1)
-    puma (3.12.2)
+    puma (4.3.11)
+      nio4r (~> 2.0)
     rack (2.0.8)
     rack-cors (1.0.5)
       rack (>= 1.6.0)
@@ -538,7 +539,7 @@ DEPENDENCIES
   mysql2 (>= 0.4.4, < 0.6.0)
   nilify_blanks
   pg
-  puma (~> 3.12)
+  puma (~> 4.3)
   rack-cors
   rails (~> 5.2.3)
   rails_admin (~> 2.0)
